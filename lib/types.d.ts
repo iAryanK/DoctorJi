@@ -1,4 +1,9 @@
+type MessageAttributes = {
+  medicine: string;
+  description: string;
+};
+
 export type ChatAttributes = {
   enum: "user" | "doctor";
-  message: string | undefined;
+  message: MessageAttributes | string | undefined;
 };

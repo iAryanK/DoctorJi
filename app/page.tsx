@@ -1,4 +1,5 @@
 "use client";
+
 import Chats from "@/components/Chats";
 import Message from "@/components/Message";
 import Navbar from "@/components/shared/Navbar";

@@ -2,9 +2,7 @@ import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   return (
     <nav className="w-full border-b py-2 flex items-center justify-between">
       <Link href="/">

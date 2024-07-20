@@ -8,7 +8,6 @@ import {
   CardFooter,
 } from "./ui/card";
 import { ChatAttributes } from "@/lib/types";
-import { Badge } from "./ui/badge";
 
 type Props = {
   chats: ChatAttributes[];
@@ -28,13 +27,28 @@ const Chats = ({ chats }: Props) => {
                 }`}
               >
                 <Card
-                  className={`bg-muted max-w-[70%] ${
+                  className={`bg-muted w-fit md:max-w-[70%] ${
                     chat.enum === "user" && "bg-primary text-gray-400"
                   }`}
                 >
-                  <CardContent className="p-2">
-                    <p>{chat.message}</p>
-                  </CardContent>
+                  {chat.enum === "user" ? (
+                    <CardContent className="p-2">
+                      <p>{chat.message?.toString()}</p>
+                    </CardContent>
+                  ) : (
+                    <CardContent className="p-2 bg-zinc-800 rounded-xl">
+                      {typeof chat.message === "object" &&
+                        "medicine" in chat.message && (
+                          <p>{chat.message.medicine}</p>
+                        )}
+                      {typeof chat.message === "object" &&
+                        "description" in chat.message && (
+                          <p className="pt-2 text-sm font-extralight italic">
+                            {chat.message.description}
+                          </p>
+                        )}
+                    </CardContent>
+                  )}
                 </Card>
               </div>
             );

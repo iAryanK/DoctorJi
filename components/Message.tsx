@@ -26,16 +26,19 @@ function Message({ chats, setChats }: Props) {
 
       const regex = new RegExp(searchValue, "i");
       let result = HomeopathData.filter((data) => {
-        return (
-          regex.test(([data.title] || []).join(" ")) ||
-          regex.test((data.detail || []).join(" "))
-        );
+        return regex.test(([data.title] || []).join(" "));
       });
 
       if (result.length) {
         setChats((prevChats) => [
           ...prevChats,
-          { enum: "doctor", message: result[0].title },
+          {
+            enum: "doctor",
+            message: {
+              medicine: result[0].title || "",
+              description: result[0].detail[0],
+            },
+          },
         ]);
       } else {
         setChats((prevChats) => [
